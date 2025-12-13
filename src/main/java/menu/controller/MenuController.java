@@ -7,24 +7,28 @@ import menu.domain.Coach;
 import menu.dto.RecommendedResults;
 import menu.service.PickService;
 import menu.view.InputView;
+import menu.view.OutputView;
 
 public class MenuController {
 
     private final InputView inputView;
+    private final OutputView outputView;
     private final PickService pickService;
 
-    public MenuController(InputView inputView, PickService pickService) {
+    public MenuController(InputView inputView, OutputView outputView, PickService pickService) {
         this.inputView = inputView;
+        this.outputView = outputView;
         this.pickService = pickService;
     }
 
     public void run() {
-        System.out.println("코치 이름 입력");
+        outputView.writeStartMsg();
+        outputView.writeReadCoachesName();
         List<Coach> coaches = readCoachesName();
         readRestrictions(coaches);
 
         RecommendedResults results = makeMenuResult(coaches);
-        results.printResults();
+        outputView.writeResults(results);
     }
 
     private List<Coach> readCoachesName() {
@@ -45,7 +49,7 @@ public class MenuController {
     private void readRestrictions(List<Coach> coaches) {
         for (Coach coach : coaches) {
             retryUntilValid(() -> {
-                System.out.printf("%s가 못먹는 메뉴\n", coach.name());
+                outputView.writeRestrictionOfCoach(coach.name());
                 String restrictions = inputView.readRestrictions();
                 return coach.addRestrictions(Arrays.stream(restrictions.split(",")).toList());
             });
@@ -68,7 +72,7 @@ public class MenuController {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                System.out.println(e.getMessage());
+                outputView.writeErrorMsg(e.getMessage());
             }
         }
     }
