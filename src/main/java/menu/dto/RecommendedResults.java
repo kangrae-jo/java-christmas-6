@@ -8,8 +8,8 @@ import menu.domain.Coach;
 
 public class RecommendedResults {
 
-    private List<String> categories = new ArrayList<>();
-    private List<Map<String, String>> menus = new ArrayList<>();
+    private final List<String> categories = new ArrayList<>();
+    private final List<Map<String, String>> menus = new ArrayList<>();
 
     public void init(List<Coach> coaches) {
         Map<String, String> coachAndMenu = new LinkedHashMap<>();
@@ -21,12 +21,12 @@ public class RecommendedResults {
         menus.add(coachAndMenu);
     }
 
-    public void addCategory(int index, String category) {
-        categories.add(index, category);
+    public void addCategory(String category) {
+        categories.add(category);
     }
 
-    public void addMenu(int index, String coach, String menu) {
-        menus.get(index).put(coach, menu);
+    public void addMenu(String coach, String menu) {
+        menus.add(Map.of(coach, menu));
     }
 
     public void printResults() {

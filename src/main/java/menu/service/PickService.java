@@ -20,12 +20,12 @@ public class PickService {
     // TODO: 이전 선택과 겹치는지 등의 validate 필요
     public void makeRecommend(RecommendedResults results, List<Coach> coaches) {
         int index = Randoms.pickNumberInRange(1, 5);
-        results.addCategory(index, categoryRepository.get(index));
+        results.addCategory(categoryRepository.get(index));
 
         for (Coach coach : coaches) {
             List<String> menus = menuRepository.get(index);
             String menu = Randoms.shuffle(menus).get(0);
-            results.addMenu(index, coach.name(), menu);
+            results.addMenu(coach.name(), menu);
         }
     }
 
