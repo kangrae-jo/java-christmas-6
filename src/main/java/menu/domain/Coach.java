@@ -12,18 +12,19 @@ public class Coach {
     private final String name;
     private final List<Menu> restrictions;
 
-    public Coach(String name) {
+    private Coach(String name) {
         validateNameRange(name);
         this.name = name;
         this.restrictions = new ArrayList<>();
     }
 
-    public Coach(String name, List<String> restrictions) {
-        validateNameRange(name);
-        this.name = name;
-        validateRestrictionRange(restrictions);
-        this.restrictions = Menu.from(restrictions);
+    public static Coach register(String name) {
+        return new Coach(name);
+    }
 
+    public void addRestrictions(List<String> restrictions) {
+        validateRestrictionRange(restrictions);
+        this.restrictions.addAll(Menu.from(restrictions));
     }
 
     private void validateNameRange(String name) {

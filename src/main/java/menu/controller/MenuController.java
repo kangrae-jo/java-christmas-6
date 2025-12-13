@@ -22,7 +22,7 @@ public class MenuController {
         return retryUntilValid(() -> {
             String names = inputView.readCoachesName();
             return Arrays.stream(names.split(","))
-                    .map(Coach::new)
+                    .map(Coach::register)
                     .toList();
         });
     }
