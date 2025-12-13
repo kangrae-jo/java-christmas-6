@@ -1,7 +1,7 @@
 package menu.view;
 
-import java.time.DayOfWeek;
 import java.util.List;
+import menu.domain.DayOfWeek;
 import menu.dto.CoachNames;
 import menu.dto.RecommendedResults;
 
