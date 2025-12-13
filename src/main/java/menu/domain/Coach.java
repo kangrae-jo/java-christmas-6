@@ -22,9 +22,9 @@ public class Coach {
         return new Coach(name);
     }
 
-    public void addRestrictions(List<String> restrictions) {
+    public boolean addRestrictions(List<String> restrictions) {
         validateRestrictionRange(restrictions);
-        this.restrictions.addAll(Menu.from(restrictions));
+        return this.restrictions.addAll(Menu.from(restrictions));
     }
 
     private void validateNameRange(String name) {

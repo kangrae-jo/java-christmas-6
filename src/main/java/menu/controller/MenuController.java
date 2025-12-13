@@ -15,7 +15,8 @@ public class MenuController {
     }
 
     public void run() {
-        List<Coach> names = readCoachesName();
+        List<Coach> coaches = readCoachesName();
+        readRestrictions(coaches);
     }
 
     private List<Coach> readCoachesName() {
@@ -25,6 +26,15 @@ public class MenuController {
                     .map(Coach::register)
                     .toList();
         });
+    }
+
+    private void readRestrictions(List<Coach> coaches) {
+        for (Coach coach : coaches) {
+            retryUntilValid(() -> {
+                String restrictions = inputView.readRestrictions();
+                return coach.addRestrictions(Arrays.stream(restrictions.split(",")).toList());
+            });
+        }
     }
 
     private <T> T retryUntilValid(Supplier<T> supplier) {

@@ -11,4 +11,8 @@ public class InputView {
         return Console.readLine();
     }
 
+    public String readRestrictions() {
+        return Console.readLine();
+    }
+
 }
