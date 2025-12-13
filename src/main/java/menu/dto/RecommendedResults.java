@@ -43,17 +43,12 @@ public class RecommendedResults {
                 .noneMatch(menu::equals);
     }
 
-    public void printResults() {
-        for (int i = 0; i < categoriesByDay.size(); i++) {
-            System.out.println("[카테고리] " + categoriesByDay.get(i));
+    public String category(int day) {
+        return categoriesByDay.get(day);
+    }
 
-            Map<String, String> coachMenus = menusByDay.get(i);
-            for (Map.Entry<String, String> entry : coachMenus.entrySet()) {
-                System.out.println(entry.getKey() + " : " + entry.getValue());
-            }
-
-            System.out.println(); // 회차 구분용 공백
-        }
+    public String menu(int day, String name) {
+        return menusByDay.get(day).get(name);
     }
 
 }

@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.function.Supplier;
 import menu.domain.Coach;
+import menu.dto.CoachNames;
 import menu.dto.RecommendedResults;
 import menu.service.PickService;
 import menu.view.InputView;
@@ -22,13 +23,13 @@ public class MenuController {
     }
 
     public void run() {
-        outputView.writeStartMsg();
-        outputView.writeReadCoachesName();
+        outputView.printStartMsg();
+        outputView.printReadCoachesName();
         List<Coach> coaches = readCoachesName();
         readRestrictions(coaches);
 
         RecommendedResults results = makeMenuResult(coaches);
-        outputView.writeResults(results);
+        outputView.printResults(results, CoachNames.from(coaches));
     }
 
     private List<Coach> readCoachesName() {
@@ -49,7 +50,7 @@ public class MenuController {
     private void readRestrictions(List<Coach> coaches) {
         for (Coach coach : coaches) {
             retryUntilValid(() -> {
-                outputView.writeRestrictionOfCoach(coach.name());
+                outputView.printRestrictionOfCoach(coach.name());
                 String restrictions = inputView.readRestrictions();
                 return coach.addRestrictions(Arrays.stream(restrictions.split(",")).toList());
             });
@@ -72,7 +73,7 @@ public class MenuController {
             try {
                 return supplier.get();
             } catch (IllegalArgumentException e) {
-                outputView.writeErrorMsg(e.getMessage());
+                outputView.printErrorMsg(e.getMessage());
             }
         }
     }
