@@ -19,6 +19,7 @@ public class RecommendedResults {
         }
 
         menusByDay.add(coachAndMenu);
+        categoriesByDay.add("");
     }
 
     public void addCategory(String category) {

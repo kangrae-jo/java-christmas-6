@@ -41,7 +41,6 @@ public class OutputView {
     }
 
     private void printDayOfWeek() {
-        System.out.println();
         System.out.printf(RESULT_FORMAT, "구분",
                 DayOfWeek.of(1),
                 DayOfWeek.of(2),
@@ -49,6 +48,7 @@ public class OutputView {
                 DayOfWeek.of(4),
                 DayOfWeek.of(5)
         );
+        System.out.println();
     }
 
     private void printDayOfCategories(RecommendedResults results) {
@@ -59,10 +59,10 @@ public class OutputView {
                 results.category(4),
                 results.category(5)
         );
+        System.out.println();
     }
 
     private void printDayOfMenus(RecommendedResults results, List<String> names) {
-
         for (String name : names) {
             System.out.printf(RESULT_FORMAT, name,
                     results.menu(1, name),
