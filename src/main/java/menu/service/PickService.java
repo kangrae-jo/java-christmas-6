@@ -41,7 +41,7 @@ public class PickService {
     private String pickMenu(RecommendedResults results, Coach coach, List<String> menus) {
         while (true) {
             String menu = Randoms.shuffle(menus).get(0);
-            if (results.canPickMenu(coach.name(), menu)) {
+            if (results.canPickMenu(coach.name(), menu) && coach.canEat(menu)) {
                 return menu;
             }
         }

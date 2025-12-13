@@ -26,7 +26,12 @@ public class Coach {
         validateRestrictionRange(restrictions);
         return this.restrictions.addAll(restrictions);
     }
-    
+
+    public boolean canEat(String menu) {
+        return !restrictions.contains(menu);
+
+    }
+
     public String name() {
         return name;
     }
