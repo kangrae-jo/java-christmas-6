@@ -19,6 +19,7 @@ public class MenuController {
     }
 
     public void run() {
+        System.out.println("코치 이름 입력");
         List<Coach> coaches = readCoachesName();
         readRestrictions(coaches);
 
@@ -38,6 +39,7 @@ public class MenuController {
     private void readRestrictions(List<Coach> coaches) {
         for (Coach coach : coaches) {
             retryUntilValid(() -> {
+                System.out.printf("%s가 못먹는 메뉴\n", coach);
                 String restrictions = inputView.readRestrictions();
                 return coach.addRestrictions(Arrays.stream(restrictions.split(",")).toList());
             });
