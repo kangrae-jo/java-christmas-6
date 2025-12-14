@@ -8,4 +8,5 @@ class ApplicationTest extends NsTest {
     protected void runMain() {
         Application.main(new String[]{});
     }
+
 }

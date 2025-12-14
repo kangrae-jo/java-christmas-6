@@ -8,7 +8,8 @@ public record CoachNames(List<String> names) {
     public static CoachNames from(List<Coach> names) {
         return new CoachNames(names.stream()
                 .map(Coach::name)
-                .toList());
+                .toList()
+        );
     }
 
 }

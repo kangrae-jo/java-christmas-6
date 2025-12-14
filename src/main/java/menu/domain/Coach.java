@@ -29,7 +29,6 @@ public class Coach {
 
     public boolean canEat(String menu) {
         return !restrictions.contains(menu);
-
     }
 
     public String name() {
